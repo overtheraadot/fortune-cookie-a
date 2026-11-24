@@ -10,6 +10,10 @@ import os
 
 LINE = "Your lucky numbers are the three retries you swore you would never need."
 
+# The gate only accepts 1-140 characters of non-blank UTF-8 text, so
+# refuse to write a line that would fail it instead of shipping it.
+assert 1 <= len(LINE.strip()) <= 140, "fortune line must be 1-140 characters"
+
 
 def main():
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
